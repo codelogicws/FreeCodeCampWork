@@ -9,7 +9,6 @@ var romanNumerals = {
 }
 
 function convertToRoman(num) {
-    var  = closestTo(num);
     return num;
 }
 
