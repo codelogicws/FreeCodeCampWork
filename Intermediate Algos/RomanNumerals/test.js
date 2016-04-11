@@ -12,11 +12,34 @@ function addToRomanNumeralLookUp(number, letter){
 }
 
 function convertToRoman(num) {
-    return num;
+
+    var tens = 1000;
+    while(tens >= 1){
+        var x = Math.floor(num/tens);
+        console.log(x);
+        num %= tens;
+        tens /= 10;
+    }
+
+    return 5;
 }
 
+function closestRoman(num){
+    return function(lastRoman, newRoman){
+        if(lastRoman == null)
+            return newRoman;
+        if(  difference(lastRoman.number, num) < difference(newRoman.number, num)  )
+            return lastRoman;
+        return newRoman;
+
+    }
+}
+
+
+
+
 function run(){
-    test(3);
+    test(3584);
 }
 
 function test(num){
