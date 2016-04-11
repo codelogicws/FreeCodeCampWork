@@ -26,9 +26,10 @@ function convertToRoman(num) {
 }
 
 function getRoman(num){
-    if(num <= 0) return '';
+    if(num <= 0)
+        return '';
     var close = romanNumerals.reduce(closestRoman(num));
-    if(close < num)
+    if(close.number < num)
         return close.letter + getRoman(num - close.number);
     return getRoman(close.number - num) + close.letter;
 }
