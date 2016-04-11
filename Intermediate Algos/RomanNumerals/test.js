@@ -18,7 +18,6 @@ function convertToRoman(num) {
     while(tens >= 1){
         var x = Math.floor(num/tens);
         romanNumber += getRoman(x * tens);
-        console.log(x);
         num %= tens;
         tens /= 10;
     }
@@ -29,11 +28,9 @@ function convertToRoman(num) {
 function getRoman(num){
     if(num <= 0) return '';
     var close = romanNumerals.reduce(closestRoman(num));
-    console.log(close);
-    debugger;
-    //if(close < num)
-        //return close.letter + getRoman(num - close.number);
-    return 5;
+    if(close < num)
+        return close.letter + getRoman(num - close.number);
+    return getRoman(close.number - num) + close.letter;
 }
 
 function closestRoman(num){
@@ -46,10 +43,14 @@ function closestRoman(num){
     }
 }
 
-
-
+function difference(num1, num2){
+    return Math.abs(num1 - num2);
+}
 
 function run(){
+    for (var i=0;i<16;i++){
+        test(i);
+    }
     test(3584);
 }
 
