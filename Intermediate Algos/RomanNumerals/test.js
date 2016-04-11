@@ -1,7 +1,6 @@
 function romanize (num) {
     if (!+num)
         return false;
-    console.log( String(+num).split("") );
     var digits = String(+num).split(""),
         key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
             "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
@@ -13,10 +12,15 @@ function romanize (num) {
     return Array(+digits.join("") + 1).join("M") + roman;
 }
 
+//separate numbers
+//create keys
+//iterate through grabing needed keys through all places
+//add as many thousands needed
+
 function run(){
-    for (var i=0;i<16;i++){
-        test(i);
-    }
+    //for (var i=0;i<16;i++){
+    //    test(i);
+    //}
 
     test(3584);
 }
