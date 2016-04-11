@@ -13,14 +13,26 @@ function addToRomanNumeralLookUp(number, letter){
 
 function convertToRoman(num) {
 
+    var romanNumber = '';
     var tens = 1000;
     while(tens >= 1){
         var x = Math.floor(num/tens);
+        romanNumber += getRoman(x * tens);
         console.log(x);
         num %= tens;
         tens /= 10;
     }
 
+    return romanNumber;
+}
+
+function getRoman(num){
+    if(num <= 0) return '';
+    var close = romanNumerals.reduce(closestRoman(num));
+    console.log(close);
+    debugger;
+    //if(close < num)
+        //return close.letter + getRoman(num - close.number);
     return 5;
 }
 
@@ -31,7 +43,6 @@ function closestRoman(num){
         if(  difference(lastRoman.number, num) < difference(newRoman.number, num)  )
             return lastRoman;
         return newRoman;
-
     }
 }
 
