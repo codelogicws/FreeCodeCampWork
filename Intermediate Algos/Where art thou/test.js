@@ -9,8 +9,8 @@ function whereAreYou(collection, source) {
         var keys = Object.keys(source);
         var match = true;
         for(var key in keys){
-            var sourceKey = keys[key];
-            if( !(queryTerms[sourceKey] === source[sourceKey]) )
+            var key = keys[key];
+            if( queryTerms[key] !== source[key] )
                 match = false;
         }
         if(match)
