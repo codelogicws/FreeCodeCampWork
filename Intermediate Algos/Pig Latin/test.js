@@ -6,14 +6,11 @@
 //translatePigLatin("eight")
 function translatePigLatin(str) {
     var word = str.split("");
-    while(  isNotVowel(word[0])  ){
-        var firstLetter = word.shift();
-        word.push(firstLetter);
-    }
+    while( isNotVowel(word[0]) )
+        word.push(word.shift());
 
     word = word.join("");
     var ending = (str === word)? "way" : "ay";
-    debugger;
     return word + ending;
 }
 
