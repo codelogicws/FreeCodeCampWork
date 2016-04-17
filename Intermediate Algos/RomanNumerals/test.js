@@ -14,11 +14,11 @@ function convertToRoman(num){
     var eachDigit = String(num).split('');
     var roman = '';
     var maxDigitsUnder1000 = (eachDigit.length > 3)? 3 : eachDigit.length;
-    for(var i=maxDigitsUnder1000; i > 0;i--){
-        roman += romanList[i-1][eachDigit[maxDigitsUnder1000-i]];
+    for(var i=0;i<maxDigitsUnder1000;i++){
+        roman = romanList[i][eachDigit.pop()] + roman;
         debugger;
     }
-    //roman = 'M'.repeat() + roman;
+    roman = 'M'.repeat(+eachDigit.join("")) + roman;
     return roman;
 }
 
@@ -29,7 +29,7 @@ function run(){
     //for (var i=0;i<16;i++){
     //    test(i);
     //}
-    test(6516);
+    test(12);
 }
 
 function test(num){
