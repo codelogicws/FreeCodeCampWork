@@ -1,5 +1,5 @@
 var romanList = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
-
+        i = 3;
 function convertToRoman(num){
     var eachDigit = String(num).split('');
     var multiplier = Math.pow(10, eachDigit.length-1);
@@ -32,5 +32,5 @@ function run(){
 }
 
 function test(num){
-    console.log( convertToRoman(num) + '  from  ' + num);
+    console.log( romanize(num) + '  from  ' + num);
 }
