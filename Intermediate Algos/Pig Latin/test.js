@@ -12,10 +12,7 @@ function translatePigLatin(str) {
     }
 
     word = word.join("");
-    var ending = "ay"
-    if(str === word){
-        ending += 'way';
-    }
+    var ending = (str === word)? "way" : "ay";
     debugger;
     return word + ending;
 }
