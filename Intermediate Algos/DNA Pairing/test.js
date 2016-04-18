@@ -1,14 +1,14 @@
-var pairs = [['A', 'T'], ['C', 'G']];
+var other = {
+    'A': 'T',
+    'T': 'A',
+    'C': 'G',
+    'G': 'C'
+};
 
 function pairElement(str) {
-    //first figure out what array matchs
-    //figure out what number in the array it is
-    //add both items from array
     var unfolded = [];
     str.split("").forEach(function(element){
-        var arrayNum = (pairs[0].indexOf(element) > -1)? 0 : 1;
-        var letter = pairs[arrayNum].indexOf(element);
-        unfolded.push([pairs[arrayNum][letter], pairs[arrayNum][+!letter]]);
+        unfolded.push([element, other[element]]);
         debugger;
     });
     return unfolded;
