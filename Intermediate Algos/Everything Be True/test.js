@@ -1,7 +1,7 @@
 function truthCheck(collection, pre) {
-    return !collection.reduce(function(notMatch, x){
-        return (notMatch || !(x[pre]))?true : false;
-    }, false);
+    return collection.reduce(function(match, x){
+        return (match && !!(x[pre]))?true : false;
+    }, true);
 }
 
 
