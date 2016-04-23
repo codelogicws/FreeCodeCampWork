@@ -1,8 +1,7 @@
 function telephoneCheck(str) {
     // Good luck!
-    var regex = new RegExp(/^[1]*[ ]*[\(]*[\d]{3}[\)]*[ -]*[\d]{3}[ -]*[\d]{4}$/);
+    var regex = new RegExp(/^[1]*[ ]*((\([\d]{3}\))|([\d]{3}))[ -]*[\d]{3}[ -]*[\d]{4}$/);
     return regex.test( str);
-
 }
 
 function run(){
