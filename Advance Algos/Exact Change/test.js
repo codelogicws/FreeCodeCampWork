@@ -12,25 +12,34 @@ var worth = {
 
 function checkCashRegister(price, cash, cid) {
     var cid = cid.reverse();
-    var change = cash - price;
-    var isMoneyInReg = false;
-    var unitsOfChange = cid.reduce(function(returned, currency){
-        var unitMaxChange = parseInt(change / worth[currency[0]]) * worth[currency[0]];
-        var subtract = Math.min(currency[1], unitMaxChange);
-        if(subtract < currency[1])
-            isMoneyInReg = true;
-        change = Math.round((change - subtract) * 100)/100;
-        if(subtract > 0)
-            returned.push([currency[0], subtract]);
+    var changeLeft = cash - price;
+    var noMoneyInReg = true;
+
+    var UnitsOfChangeToGive = cid.reduce(function(returned, currency){
+
+        var changeFromUnit = currency[1];
+        var maxChangeUnitCanGive = parseInt(changeLeft / worth[currency[0]]) * worth[currency[0]];
+        if(maxChangeUnitCanGive < changeFromUnit){
+            changeFromUnit = maxChangeUnitCanGive;
+            noMoneyInReg = false;
+        }
+
+        changeLeft = Math.round((changeLeft - changeFromUnit) * 100)/100;
+        if(changeFromUnit > 0)
+            returned.push([currency[0], changeFromUnit]);
         return returned;
+
     }, []);
-    if(change > 0){
+
+
+    if(changeLeft > 0){
         return "Insufficient Funds";
-    }else if(!isMoneyInReg){
+    }else if(noMoneyInReg){
         return "Closed";
     }
-    return unitsOfChange;
+    return UnitsOfChangeToGive;
 }
+
 
 
 //Iterate through given cid
