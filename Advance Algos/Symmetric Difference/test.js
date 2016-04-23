@@ -1,23 +1,16 @@
 function sym() {
     var args = Array.from(arguments);
     return args.reduce(function(arraySoFar, currentArray){
-
-        var exclusive1 = arraySoFar.filter(function(x, index){
-            return currentArray.indexOf(x) === -1 && arraySoFar.indexOf(x) == index;
-        });
-
-        var exclusive2 = currentArray.filter(function(x, index){
-            return arraySoFar.indexOf(x) === -1 && currentArray.indexOf(x) == index;
-        });
-
+        var exclusive1 = getUnique(arraySoFar, currentArray);
+        var exclusive2 = getUnique(currentArray, arraySoFar);
         return exclusive2.concat(exclusive1);
     }, []);
 }
 
 function getUnique(uniqueFrom, testAgainst){
-    return uniqueFrom.filter(function(x, index)){
+    return uniqueFrom.filter(function(x, index){
         return testAgainst.indexOf(x) === -1 && uniqueFrom.indexOf(x) == index;
-    }
+    });
 }
 
 
