@@ -14,6 +14,12 @@ function sym() {
     }, []);
 }
 
+function getUnique(uniqueFrom, testAgainst){
+    return uniqueFrom.filter(function(x, index)){
+        return testAgainst.indexOf(x) === -1 && uniqueFrom.indexOf(x) == index;
+    }
+}
+
 
 function run(){
     var answer1 = sym([1, 2, 3], [5, 2, 1, 4]);
