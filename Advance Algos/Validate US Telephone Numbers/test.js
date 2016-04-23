@@ -10,6 +10,7 @@ function run(){
     var test3 = test("1(824) 518-8421", true);
     var test4 = test("1 555-555-5555", true);
     var test5 = test("1 555)555-5555", false);
+    var test6 = test("41585984568", false);
     debugger;
 }
 
