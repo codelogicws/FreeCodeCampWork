@@ -4,7 +4,6 @@ function makeFriendlyDates(arr) {
         "June", "July", "August", "September", "October",
         "November", "December"];
 
-
     var startDate = arr[0].split("-");
     var endDate = arr[1].split("-");
     var newDates = [];
@@ -12,31 +11,43 @@ function makeFriendlyDates(arr) {
     newDates[1] = [MONTH[parseInt(  endDate[1])], ordinal(  endDate[2]),   endDate[0]];
 
     isWithinAYear  = withinAYear(startDate, endDate);
-    isMonthMatch = newDates[0][0] == newDates[1][0];
+    isSameYear = startDate[0] == endDate[0];
+    isSameMonth = newDates[0][0] == newDates[1][0];
+    isSameDate = startDate[0] == endDate[0] && startDate[1] == endDate[1] && startDate[2] == endDate[2];
 
-    if(isWithinAYear){
-        debugger;
-        newDates[0].pop();
+    if(!isSameDate && isWithinAYear && isSameYear){
         newDates[1].pop();
-        if(isMonthMatch){
+        if(isSameMonth){
+            newDates[0].pop();
             newDates[1].splice(0, 1);
         }
+    }else if(!isSameDate && isWithinAYear && !isSameYear){
+        if(!isSameMonth)
+            newDates[0].pop();
+        newDates[1].pop();
     }
 
-    if(newDates[0].length == 3){
-        newDates[0][1] += ',';
-        newDates[1][1] += ',';
-    }
+    newDates[0] = addYearCommaIfNeeded(newDates[0]);
+    newDates[1] = addYearCommaIfNeeded(newDates[1]);
 
     newDates[0] = newDates[0].join(' ');
     newDates[1] = newDates[1].join(' ');
 
+    if(isSameDate)
+        newDates.pop();
+
     return newDates;
+}
+
+function addYearCommaIfNeeded(array){
+    if(array.length == 3)
+        array[1] = array[1] + ',';
+    return array;
 }
 
 function withinAYear(start, end){
     var yearGap = end[0] - start[0];
-    return ((yearGap + end[1]) - start[1]) < 100;
+    return ((yearGap + end[1] + end[2]) - (start[1] + start[2]) ) < 10000;
 }
 
 function ordinal(num){
@@ -52,6 +63,9 @@ function run(){
     test(["2016-12-01", "2017-02-03"], ["December 1st","February 3rd"]);
     test(["2016-12-01", "2018-02-03"], ["December 1st, 2016","February 3rd, 2018"]);
     test(["2022-09-05", "2023-09-05"], ["September 5th, 2022","September 5th, 2023"]);
+    test(["2017-03-01", "2017-05-05"], ["March 1st, 2017","May 5th"]);
+    test(["2022-09-05", "2023-09-04"], ["September 5th, 2022","September 4th"]);
+    test(["2018-01-13", "2018-01-13"], ["January 13th, 2018"]);
 }
 
 function test(input, assert){
