@@ -18,7 +18,12 @@ function updateInventory(arr1, arr2) {
         newArray.push(element);
       }
     });
-    newArray = newArray.sort(function(a, b){
+    newArray = sortInv(newArray);
+    return newArray;
+}
+
+function sortInv(newArray){
+    newArray.sort(function(a, b){
       return a[1].toUpperCase() > b[1].toUpperCase();
     });
     return newArray;
