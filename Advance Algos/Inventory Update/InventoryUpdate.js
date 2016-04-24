@@ -4,11 +4,11 @@
   //if already exist then add to the old
   //else make a new item
 
-var map = {};
 
 function updateInventory(arr1, arr2) {
     // All inventory must be accounted for or you're fired!
-    indexItems(arr1);
+    var map = {};
+    map = indexItems(arr1, map);
     var newArray = [].concat(arr1)
     arr2.forEach(function(element, index){
       var existingIndex = map[element[1]];
@@ -24,10 +24,11 @@ function updateInventory(arr1, arr2) {
     return newArray;
 }
 
-function indexItems(arr){
+function indexItems(arr, map){
   arr.forEach(function(element, index){
     map[element[1]] = index;
   });
+  return map;
 }
 
 // Example inventory lists
