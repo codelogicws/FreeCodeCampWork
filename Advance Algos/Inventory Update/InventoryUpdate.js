@@ -1,24 +1,18 @@
-//----Plan
-//Create a index
-//iterate through the new array
-  //if already exist then add to the old
-  //else make a new item
-
-
 function updateInventory(arr1, arr2) {
-    // All inventory must be accounted for or you're fired!
     var map = {};
     map = indexItems(arr1, map);
     var newArray = [].concat(arr1)
+
     arr2.forEach(function(element, index){
       var existingIndex = map[element[1]];
       if(  typeof(existingIndex) != 'undefined'){
-        newArray[existingIndex] = [(newArray[existingIndex][0]+element[0]), element[1]];
+        newArray[existingIndex][0] = (newArray[existingIndex][0] + element[0]);
       }else{
         newArray.push(element);
       }
     });
-    newArray = sortInv(newArray);
+
+    sortInv(newArray);
     return newArray;
 }
 
@@ -26,7 +20,6 @@ function sortInv(newArray){
     newArray.sort(function(a, b){
       return a[1].toUpperCase() > b[1].toUpperCase();
     });
-    return newArray;
 }
 
 function indexItems(arr, map){
@@ -35,6 +28,11 @@ function indexItems(arr, map){
   });
   return map;
 }
+
+
+
+
+
 
 // Example inventory lists
 var curInv = [
